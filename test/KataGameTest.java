@@ -30,12 +30,87 @@ public class KataGameTest {
 
 	private int checarVecinos(final int x, final int y) {
 		if (x - 1 >= 0) {
-			// se verifica
-		}
-		if (y - 1 >= 0) {
-			// se verifica
+			if (x + 1 <= tamañoX) {
+				if (y - 1 < 0) {
+					//y esta en el borde de abajo de las y no es esquina
+					verificarCelula(x + 1, y); //verifica lado derecho
+					verificarCelula(x - 1, y); //verifica lado izquierdo
+					verificarCelula(x, y + 1); // verifica arriba
+					verificarCelula(x + 1, y + 1); //verifica superior derecho
+					verificarCelula(x - 1, y + 1); //verifica superrior izquierdo
+				} else {
+					if(y+1 <= tamañoY){
+						//esta en centro de x y
+						verificarCelula(x + 1, y);
+						verificarCelula(x + 1, y - 1);
+						verificarCelula(x + 1, y + 1);
+						verificarCelula(x, y - 1);
+						verificarCelula(x, y + 1);
+						verificarCelula(x - 1, y);
+						verificarCelula(x - 1, y - 1);
+						verificarCelula(x - 1, y + 1);
+					} else {
+						//esta en borde superior en el centro no es equina
+						verificarCelula(x + 1, y); //verifica lado derecho
+						verificarCelula(x - 1, y); //verifica lado izquierdo
+						verificarCelula(x, y - 1); //verifica abajo
+						verificarCelula(x + 1, y - 1); //verifica abajo derecho
+						verificarCelula(x - 1, y - 1); //verifica abajo izquierdo
+					}
+				}
+				
+			} else {
+				if (y - 1 < 0) {
+					// esta en la esquina inferior derecha
+					verificarCelula(x - 1, y); //verifica lado izquierdo
+					verificarCelula(x, y + 1); // verifica arriba
+					verificarCelula(x - 1, y + 1); //verifica superrior izquierdo
+				} else {
+					//y esta en medio
+					if(y+1 <= tamañoY){
+						//esta en el borde derecho
+						verificarCelula(x, y + 1); // verifica arriba
+						verificarCelula(x, y - 1); //verifica abajo
+						verificarCelula(x - 1, y); //verifica lado izquierdo
+						verificarCelula(x - 1, y + 1); //verifica superrior izquierdo
+						verificarCelula(x - 1, y - 1); //verifica abajo izquierdo
+					} else {
+						//esta en esquina superior derecha
+					}
+				}
+			}
+		} else {
+			//x esta en el borde izquierdo
+			if (y - 1 < 0) {
+				// esta en la esquina inferior izquierda
+			} else {
+				//y esta en medio
+				if(y+1 <= tamañoY){
+					//esta en el borde izquierdo
+				} else {
+					//esta en esquina superior izquierda
+				}
+			}
 		}
 		return 0;
+	}
+	
+	
+	verificarCelula(x + 1, y);
+	verificarCelula(x + 1, y - 1);
+	verificarCelula(x + 1, y + 1);
+	verificarCelula(x, y - 1);
+	verificarCelula(x, y + 1);
+	verificarCelula(x - 1, y);
+	verificarCelula(x - 1, y - 1);
+	verificarCelula(x - 1, y + 1);
+
+	private int verificarCelula(final int x, final int y) {
+		if (coordenadas[x][y] == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 }
